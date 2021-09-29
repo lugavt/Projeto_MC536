@@ -21,8 +21,6 @@ for country in IDH_data["Country"]:
         element = IDH_data.loc[IDH_data["Country"] == country]
         IDH_value = element[str(year)].iloc[0]
         
-        
-        mortality_year = f'{int(year):,}'
 
         mortality_data.loc[(mortality_data.country == mortality_country) & (mortality_data.year == year) , "IDH"] = IDH_value
         
