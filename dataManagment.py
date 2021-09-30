@@ -15,6 +15,12 @@ def handleCountryNameSanitation(country):
 def handleCountryNameIDH(country):
     return country[1:]
 
+def handleCountryNameCountry(country):
+    return country[:-1]
+
+country_data = pd.read_csv('data/countries of the world.csv')
+country_data = country_data[['Country','Region','Climate']]
+country_data["Country"] = country_data["Country"].map(handleCountryNameCountry)
 
 IDH_data = pd.read_csv("data/Human Development Index.csv")
 IDH_data.drop( ["2017"], axis = 1, inplace = True ) #retiramos a coluna de 2017 pois ela não será usada na análise
@@ -30,20 +36,28 @@ sanitation_data.rename({'REF_AREA:Geographic area': 'country', 'INDICATOR:Indica
 
 mortality_data = pd.read_excel('data/global_mortality.xlsx')
 
+
 for country in IDH_data["country"]:
-     
-    if (country not in mortality_data["country"].unique()):
-        
+    
+    if (country not in country_data["Country"].to_numpy()):
+
         filtered_data = IDH_data["country"] != country
         IDH_data = IDH_data[filtered_data]
         
-
 for country in sanitation_data["country"].unique():
     
-    if (country not in mortality_data["country"].unique()):
+    if (country not in country_data["Country"].to_numpy()):
     
         filtered_data = sanitation_data["country"] != country
         sanitation_data = sanitation_data[filtered_data]
+
+for country in mortality_data["country"].unique():
+
+    if (country not in country_data["Country"].to_numpy()):
+    
+        filtered_data = mortality_data["country"] != country
+        mortality_data = mortality_data[filtered_data]
+
 
 newIDH_data = pd.melt(IDH_data.reset_index(), id_vars=['HDI Rank', 'country'], var_name='year', value_name='HDI_VALUE')
 IDH_data = newIDH_data[newIDH_data.year.str.contains("index") == False]
@@ -55,3 +69,5 @@ sanitation_data.to_csv(r'./new_data/sanitation_data.csv')
 IDH_data.to_csv(r'./new_data/IDH_data.csv')
 
 mortality_data.to_csv(r'./new_data/mortality_data.csv')
+
+country_data.to_csv(r'./new_data/countries_data.csv')
