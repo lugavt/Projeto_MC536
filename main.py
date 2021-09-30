@@ -52,10 +52,8 @@ for country in IDH_data["Country"]:
         
 
 
+for country in mortality_data["country"].unique():
 
-for idh_country in IDH_data["Country"]:
-
-    country = idh_country[1:]
     country_filtered_df = sanitation_data.loc[sanitation_data["REF_AREA:Geographic area"] == country]
     print(country)
 
