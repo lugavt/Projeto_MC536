@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 def handleIndicators(indicator):
 
@@ -43,6 +44,11 @@ for country in sanitation_data["country"].unique():
     
         filtered_data = sanitation_data["country"] != country
         sanitation_data = sanitation_data[filtered_data]
+
+newIDH_data = pd.melt(IDH_data.reset_index(), id_vars=['HDI Rank', 'country'], var_name='year', value_name='HDI_VALUE')
+IDH_data = newIDH_data[newIDH_data.year.str.contains("index") == False]
+
+IDH_data.dropna(subset = ["HDI_VALUE"], inplace=True)
 
 sanitation_data.to_csv(r'./new_data/sanitation_data.csv')
 
