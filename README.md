@@ -1,4 +1,4 @@
-# Projeto_MC536
+# Projeto_MC536 - Engenheiros do Açaí
 
 ## Alunos
 * `Guilherme Tezoli Bakaukas`
