@@ -21,11 +21,13 @@ def handleCountryNameCountry(country):
 country_data = pd.read_csv('../data/external/countries of the world.csv')
 country_data = country_data[['Country','Region','Climate']]
 country_data["Country"] = country_data["Country"].map(handleCountryNameCountry)
+country_data.to_csv(r'../data/interim/country_data.csv')
 
 IDH_data = pd.read_csv("../data/external/Human Development Index.csv")
 IDH_data.drop( ["2017"], axis = 1, inplace = True ) #retiramos a coluna de 2017 pois ela não será usada na análise
 IDH_data["Country"] = IDH_data["Country"].map(handleCountryNameIDH)
 IDH_data.rename({'Country':'country'}, axis=1, inplace=True)
+IDH_data.to_csv(r'../data/interim/IDH_data.csv')
 
 sanitation_data = pd.read_csv('../data/external/sanitation_data_2000-2016.csv')
 sanitation_data["REF_AREA:Geographic area"] = sanitation_data["REF_AREA:Geographic area"].map(handleCountryNameSanitation)
@@ -33,10 +35,11 @@ sanitation_data["INDICATOR:Indicator"] = sanitation_data["INDICATOR:Indicator"].
 sanitation_data.drop( ["DATAFLOW", "SEX:Sex"], axis = 1, inplace = True )
 sanitation_data = sanitation_data.loc[:, 'REF_AREA:Geographic area':'OBS_VALUE:Observation Value']
 sanitation_data.rename({'REF_AREA:Geographic area': 'country', 'INDICATOR:Indicator':'Indicator', 'TIME_PERIOD:Time period':'year', 'OBS_VALUE:Observation Value':'OBS_VALUE'}, axis=1, inplace=True)
+sanitation_data.to_csv(r'../data/interim/sanitation_data.csv')
 
 mortality_data = pd.read_excel('../data/external/global_mortality.xlsx')
 
-
+#filtramos os dados, para verificar a chave externa para a tabela de países 
 for country in IDH_data["country"]:
     
     if (country not in country_data["Country"].to_numpy()):
