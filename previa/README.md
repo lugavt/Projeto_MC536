@@ -61,7 +61,7 @@ Qualquer mídia usada no seu projeto: vídeo, imagens, animações, slides etc. 
 ## Modelo Conceitual Preliminar
 
 > Coloque aqui a imagem do modelo conceitual preliminar em ER ou UML, como o exemplo a seguir:
-> ![ER Taxi](images/er-taxi.png)
+> ![modelo conceitual](assets/modelo_conceitual.PNG)
 
 ## Modelos Lógicos Preliminares
 
@@ -69,16 +69,27 @@ Qualquer mídia usada no seu projeto: vídeo, imagens, animações, slides etc. 
 
 > Exemplo de modelo lógico relacional
 ~~~
-PESSOA(_Código_, Nome, Telefone)
-ARMÁRIO(_Código_, Tamanho, Ocupante)
-  Ocupante chave estrangeira -> PESSOA(Código)
+Country(_Country_, Region, Climate)
+
+HDI(country, year, HDI_VALUE)
+
+CHE: country -> Country (Country)
+
+Mortality(country,year,country_code, Cardiovascular diseases (%), Cancers (%), Respiratory diseases (%), Diabetes (%), Dementia (%), Lower respiratory infections (%), Neonatal deaths (%), Diarrheal diseases (%), Road accidents (%), Liver disease (%), Tuberculosis (%), Kidney disease (%), Digestive diseases (%), HIV/AIDS (%), Suicide (%), Malaria (%), Homicide (%), Nutritional deficiencies (%), Meningitis (%), Protein-energy malnutrition (%), Drowning (%), Maternal deaths (%), Parkinson disease (%), Alcohol disorders (%), Intestinal infectious diseases (%), Drug disorders (%), Hepatitis (%), Fire (%), Heat-related (hot and cold exposure) (%), Natural disasters (%), Conflict (%), Terrorism (%))
+
+CHE: country -> Country (Country)
+
+Sanitation(REF_AREA, country, INDICATOR, Indicator, Service Type, year Unit of measure, OBS_VALUE)
+
+CHE: country -> Country (Country)
+
 ~~~
 
 > Para o modelo de grafos de propriedades, utilize este
 > [modelo de base](https://docs.google.com/presentation/d/10RN7bDKUka_Ro2_41WyEE76Wxm4AioiJOrsh6BRY3Kk/edit?usp=sharing) para construir o seu.
 > Coloque a imagem do PNG do seu modelo lógico como ilustrado abaixo (a imagem estará na pasta `image`):
 >
-> ![Modelo Lógico de Grafos](images/modelo-logico-grafos.png)
+> ![Modelo Lógico de Grafos](assets/modelo_logico_grafos.png)
 
 > Para o modelo de grafos de conhecimento, utilize a abordagem
 > (recurso, propriedade, valor) para apresentar seu grafo exemplo.
