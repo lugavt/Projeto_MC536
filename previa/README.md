@@ -47,10 +47,10 @@ Qualquer mídia usada no seu projeto: vídeo, imagens, animações, slides etc. 
 
 # Projeto `<Título do Projeto>`
 
-# Equipe `<nome da equipe>` - `<sigla da equipe>`
-* `<nome completo>` - `<RA>`
-* `<nome completo>` - `<RA>`
-* `<nome completo>` - `<RA>`
+# Equipe `Engenheiros do Açaí` - `EDA`
+* `Guilherme Tezoli Bakaukas` - `217332`
+* `Lucca Gazotto Vettori` - `240231`
+* `Marcelo Salles Previti` - `240765`
 
 ## Resumo do Projeto
 > Texto resumindo o projeto.
