@@ -1,16 +1,8 @@
 import pandas as pd
 import numpy as np
+from apiRequest import getSanitationData
 
-def handleIndicators(indicator):
-
-    proper_indicators = ["Proportion of population practising open defecation", "Proportion of population using at least basic drinking water services", "Proportion of population using at least basic sanitation services","Proportion of population using safely managed drinking water services", "Proportion of population using safely managed sanitation services", "Proportion of population with a handwashing facility with soap and water available at home" ]
-
-    for ele in proper_indicators:
-        if (ele in indicator):
-            return (ele)
-
-def handleCountryNameSanitation(country):
-    return country[5:]
+sanitation_data = getSanitationData()
 
 def handleCountryNameIDH(country):
     return country[1:]
@@ -29,13 +21,10 @@ IDH_data["Country"] = IDH_data["Country"].map(handleCountryNameIDH)
 IDH_data.rename({'Country':'country'}, axis=1, inplace=True)
 IDH_data.to_csv(r'../data/interim/IDH_data.csv')
 
-sanitation_data = pd.read_csv('../data/external/sanitation_data_2000-2016.csv')
-sanitation_data["REF_AREA:Geographic area"] = sanitation_data["REF_AREA:Geographic area"].map(handleCountryNameSanitation)
-sanitation_data["INDICATOR:Indicator"] = sanitation_data["INDICATOR:Indicator"].map(handleIndicators)
-sanitation_data.drop( ["DATAFLOW", "SEX:Sex"], axis = 1, inplace = True )
-sanitation_data = sanitation_data.loc[:, 'REF_AREA:Geographic area':'OBS_VALUE:Observation Value']
-sanitation_data.rename({'REF_AREA:Geographic area': 'country', 'INDICATOR:Indicator':'Indicator', 'TIME_PERIOD:Time period':'year', 'OBS_VALUE:Observation Value':'OBS_VALUE'}, axis=1, inplace=True)
-sanitation_data.to_csv(r'../data/interim/sanitation_data.csv')
+sanitation_data.rename({'Geographic area': 'country', 'TIME_PERIOD':'year'}, axis=1, inplace=True)
+sanitation_data = sanitation_data[['REF_AREA','country','INDICATOR','Indicator','Service Type','year', 'Unit of measure', 'OBS_VALUE']]
+sanitation_data.drop(sanitation_data[sanitation_data.year > 2016].index, inplace=True)
+sanitation_data.to_csv(r"../data/interim/sanitation_data.csv")
 
 mortality_data = pd.read_excel('../data/external/global_mortality.xlsx')
 
@@ -57,7 +46,7 @@ for country in sanitation_data["country"].unique():
 for country in mortality_data["country"].unique():
 
     if (country not in country_data["Country"].to_numpy()):
-    
+
         filtered_data = mortality_data["country"] != country
         mortality_data = mortality_data[filtered_data]
 
