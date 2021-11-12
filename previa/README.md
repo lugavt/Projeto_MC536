@@ -53,7 +53,7 @@ Qualquer mídia usada no seu projeto: vídeo, imagens, animações, slides etc. 
 * `Marcelo Salles Previti` - `240765`
 
 ## Resumo do Projeto
-> Texto resumindo o projeto.
+> O projeto "Compreendendo as consequências sanitárias dos índices sociais", como seu nome indica, visa, a partir de uma grande gama de dados coletados, encontrar as possíveis relações existentes entre diversos índices socioeconômicos dos países com números de mortalidade. Dessa forma, o objetivo final do projeto é poder, baseando-se nos dados disponíveis, poder responder questionamentos e prever tendências futuras sobre os países.
 
 ## Slides da Apresentação
 > Coloque aqui o link para o PDF da apresentação prévia
