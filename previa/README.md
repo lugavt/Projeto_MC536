@@ -87,10 +87,9 @@ título da base | link | breve descrição
 > demonstrar o potencial da base.
 >
 ### Pergunta/Análise 1
-> * Pergunta 1
+> * No contexto Brasil, existe alguma relação entre a variação do percentual de pessoas com acesso à saneamento básico e dos números de mortalidade por tuberculose? 
 >   
->   * Explicação sucinta da análise que será feita ou conjunto de queries que
->     responde à pergunta.
+>   * Para responder tal questionamento sobre a tuberculose, foram feitas as seguintes análises/queries: primeiramente foi feito um corte na tabela de mortalidade visando encontrar apenas os dados de mortalidade por tuberculose no Brasil ao longo dos anos. Em seguida, esses dados foram cruzados com os dados de acesso à saneamento básico no Brasil no mesmo período. Por fim, com a tabela já estruturada, a análise feita consistiu em observar o comportamento das duas colunas. O resultado observado foi que a medida que o IDH foi aumentando no país, as taxas de mortalidade por tuberculose foram diminuindo.
 
 ### Pergunta/Análise 2
 > * Pergunta 2
