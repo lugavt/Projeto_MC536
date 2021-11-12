@@ -1,4 +1,4 @@
-,REF_AREA,country,INDICATOR,Indicator,Service Type,year,Unit of measure,OBS_VALUE
+,REF_AREA,country,INDICATOR,Indicator,ServiceType,year,UnitOfMeasure,OBS_VALUE
 0,AFG,Afghanistan,WS_PPL_H-B,Proportion of population with a handwashing facility with soap and water available at home,Hygiene,2005,%,36.96777
 1,AFG,Afghanistan,WS_PPL_H-B,Proportion of population with a handwashing facility with soap and water available at home,Hygiene,2006,%,37.038197
 2,AFG,Afghanistan,WS_PPL_H-B,Proportion of population with a handwashing facility with soap and water available at home,Hygiene,2007,%,37.109322

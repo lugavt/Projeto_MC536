@@ -18,11 +18,11 @@ country_data.to_csv(r'../data/interim/country_data.csv')
 IDH_data = pd.read_csv("../data/external/Human Development Index.csv")
 IDH_data.drop( ["2017"], axis = 1, inplace = True ) #retiramos a coluna de 2017 pois ela não será usada na análise
 IDH_data["Country"] = IDH_data["Country"].map(handleCountryNameIDH)
-IDH_data.rename({'Country':'country'}, axis=1, inplace=True)
+IDH_data.rename({'Country':'country', 'HDI Rank':'HDIRank'}, axis=1, inplace=True)
 IDH_data.to_csv(r'../data/interim/IDH_data.csv')
 
-sanitation_data.rename({'Geographic area': 'country', 'TIME_PERIOD':'year'}, axis=1, inplace=True)
-sanitation_data = sanitation_data[['REF_AREA','country','INDICATOR','Indicator','Service Type','year', 'Unit of measure', 'OBS_VALUE']]
+sanitation_data.rename({'Geographic area': 'country', 'TIME_PERIOD':'year', 'Service Type':'ServiceType', 'Unit of measure':'UnitOfMeasure'}, axis=1, inplace=True)
+sanitation_data = sanitation_data[['REF_AREA','country','INDICATOR','Indicator','ServiceType','year', 'UnitOfMeasure', 'OBS_VALUE']]
 sanitation_data.drop(sanitation_data[sanitation_data.year > 2016].index, inplace=True)
 sanitation_data.to_csv(r"../data/interim/sanitation_data.csv")
 
@@ -51,7 +51,7 @@ for country in mortality_data["country"].unique():
         mortality_data = mortality_data[filtered_data]
 
 
-newIDH_data = pd.melt(IDH_data.reset_index(), id_vars=['HDI Rank', 'country'], var_name='year', value_name='HDI_VALUE')
+newIDH_data = pd.melt(IDH_data.reset_index(), id_vars=['HDIRank', 'country'], var_name='year', value_name='HDI_VALUE')
 IDH_data = newIDH_data[newIDH_data.year.str.contains("index") == False]
 
 IDH_data.dropna(subset = ["HDI_VALUE"], inplace=True)
