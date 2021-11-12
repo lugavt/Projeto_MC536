@@ -28,6 +28,9 @@ sanitation_data.to_csv(r"../data/interim/sanitation_data.csv")
 
 mortality_data = pd.read_excel('../data/external/global_mortality.xlsx')
 
+mortality_data.rename(columns=lambda x: x.replace(' (%)', ''), inplace=True)
+mortality_data.rename(columns=lambda x: x.replace(' ', '_'), inplace=True)
+
 #filtramos os dados, para verificar a chave externa para a tabela de países 
 for country in IDH_data["country"]:
     
