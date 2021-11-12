@@ -89,7 +89,7 @@ CHE: country -> Country (Country)
 > [modelo de base](https://docs.google.com/presentation/d/10RN7bDKUka_Ro2_41WyEE76Wxm4AioiJOrsh6BRY3Kk/edit?usp=sharing) para construir o seu.
 > Coloque a imagem do PNG do seu modelo lógico como ilustrado abaixo (a imagem estará na pasta `image`):
 >
-> ![Modelo Lógico de Grafos](assets/modelo_logico_grafos.png)
+> ![Modelo Lógico de Grafos](assets/modelo_logico_grafos.PNG)
 
 > Para o modelo de grafos de conhecimento, utilize a abordagem
 > (recurso, propriedade, valor) para apresentar seu grafo exemplo.
