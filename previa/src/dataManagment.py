@@ -16,7 +16,7 @@ country_data["Country"] = country_data["Country"].map(handleCountryNameCountry)
 country_data.to_csv(r'../data/interim/country_data.csv')
 
 IDH_data = pd.read_csv("../data/external/Human Development Index.csv")
-IDH_data.drop( ["2017"], axis = 1, inplace = True ) #retiramos a coluna de 2017 pois ela não será usada na análise
+IDH_data.drop( ["2017"], axis = 1, inplace = True )
 IDH_data["Country"] = IDH_data["Country"].map(handleCountryNameIDH)
 IDH_data.rename({'Country':'country', 'HDI Rank':'HDIRank'}, axis=1, inplace=True)
 IDH_data.to_csv(r'../data/interim/IDH_data.csv')
@@ -53,7 +53,7 @@ for country in mortality_data["country"].unique():
         filtered_data = mortality_data["country"] != country
         mortality_data = mortality_data[filtered_data]
 
-
+#criar uma coluna year e transformar as informações de IDH para esse modelo
 newIDH_data = pd.melt(IDH_data.reset_index(), id_vars=['HDIRank', 'country'], var_name='year', value_name='HDI_VALUE')
 IDH_data = newIDH_data[newIDH_data.year.str.contains("index") == False]
 
