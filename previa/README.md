@@ -9,7 +9,7 @@
 > O projeto "Compreendendo as consequências sanitárias dos índices sociais", como seu nome indica, visa, a partir de uma grande gama de dados coletados, encontrar as possíveis relações existentes entre diversos índices socioeconômicos dos países com números de mortalidade. Dessa forma, o objetivo final do projeto é poder, baseando-se nos dados disponíveis, responder questionamentos e prever tendências futuras sobre os países.
 
 ## Slides da Apresentação
-> Coloque aqui o link para o PDF da apresentação prévia
+> [slides](https://github.com/lugavt/Projeto_MC536/blob/main/previa/slides/SlidesPrevia.pdf)
 
 ## Modelo Conceitual Preliminar
 
