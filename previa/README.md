@@ -45,7 +45,7 @@ Qualquer mídia usada no seu projeto: vídeo, imagens, animações, slides etc. 
 
 # Modelo para Apresentação da Entrega Prévia do Projeto
 
-# Projeto `<Título do Projeto>`
+# Projeto `Compreendendo as consequências sanitárias dos índices sociais`
 
 # Equipe `Engenheiros do Açaí` - `EDA`
 * `Guilherme Tezoli Bakaukas` - `217332`
