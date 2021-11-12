@@ -60,14 +60,11 @@ Qualquer mídia usada no seu projeto: vídeo, imagens, animações, slides etc. 
 
 ## Modelo Conceitual Preliminar
 
-> Coloque aqui a imagem do modelo conceitual preliminar em ER ou UML, como o exemplo a seguir:
 > ![modelo conceitual](assets/modelo_conceitual.PNG)
 
 ## Modelos Lógicos Preliminares
 
-> Coloque aqui os primeiros modelos lógicos dos bancos de dados relacionados aos modelos conceituais. Para o modelo relacional, sugere-se o formato a seguir. Para outros modelos lógicos o formato é livre, pode ser adotado aqueles apresentados em sala.
-
-> Exemplo de modelo lógico relacional
+> Modelo lógico relacional
 ~~~
 Country(_Country_, Region, Climate)
 
@@ -85,10 +82,8 @@ CHE: country -> Country (Country)
 
 ~~~
 
-> Para o modelo de grafos de propriedades, utilize este
-> [modelo de base](https://docs.google.com/presentation/d/10RN7bDKUka_Ro2_41WyEE76Wxm4AioiJOrsh6BRY3Kk/edit?usp=sharing) para construir o seu.
-> Coloque a imagem do PNG do seu modelo lógico como ilustrado abaixo (a imagem estará na pasta `image`):
->
+> Para o modelo de grafos de propriedades:
+>  
 > ![Modelo Lógico de Grafos](assets/modelo_logico_grafos.PNG)
 
 > Para o modelo de grafos de conhecimento, utilize a abordagem
