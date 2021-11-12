@@ -45,7 +45,7 @@ Qualquer mídia usada no seu projeto: vídeo, imagens, animações, slides etc. 
 
 # Modelo para Apresentação da Entrega Prévia do Projeto
 
-# Projeto `<Título do Projeto>`
+# Projeto `Compreendendo as consequências sanitárias dos índices sociais`
 
 # Equipe `Engenheiros do Açaí` - `EDA`
 * `Guilherme Tezoli Bakaukas` - `217332`
@@ -53,7 +53,7 @@ Qualquer mídia usada no seu projeto: vídeo, imagens, animações, slides etc. 
 * `Marcelo Salles Previti` - `240765`
 
 ## Resumo do Projeto
-> Texto resumindo o projeto.
+> O projeto "Compreendendo as consequências sanitárias dos índices sociais", como seu nome indica, visa, a partir de uma grande gama de dados coletados, encontrar as possíveis relações existentes entre diversos índices socioeconômicos dos países com números de mortalidade. Dessa forma, o objetivo final do projeto é poder, baseando-se nos dados disponíveis, poder responder questionamentos e prever tendências futuras sobre os países.
 
 ## Slides da Apresentação
 > Coloque aqui o link para o PDF da apresentação prévia
@@ -89,7 +89,7 @@ CHE: country -> Country (Country)
 > [modelo de base](https://docs.google.com/presentation/d/10RN7bDKUka_Ro2_41WyEE76Wxm4AioiJOrsh6BRY3Kk/edit?usp=sharing) para construir o seu.
 > Coloque a imagem do PNG do seu modelo lógico como ilustrado abaixo (a imagem estará na pasta `image`):
 >
-> ![Modelo Lógico de Grafos](assets/modelo_logico_grafos.png)
+> ![Modelo Lógico de Grafos](assets/modelo_logico_grafos.PNG)
 
 > Para o modelo de grafos de conhecimento, utilize a abordagem
 > (recurso, propriedade, valor) para apresentar seu grafo exemplo.
