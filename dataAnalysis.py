@@ -1,6 +1,6 @@
 import numpy as np
 import math
-from sklearn import preprocessing, model_selection
+from sklearn import linear_model
 import matplotlib.pyplot as plt
 import pandas as pd
 
@@ -92,7 +92,7 @@ def getB(x, y, n):
 
 IDH_data = pd.read_csv('./previa/data/processed/IDH_data.csv')
 
-data_filtered = IDH_data["country"] == 'Brazil'
+data_filtered = IDH_data["country"] == 'China'
 
 brazil_data = IDH_data[data_filtered]
 y = brazil_data["HDI_VALUE"].to_numpy()
@@ -102,12 +102,37 @@ A = getA(x, y, 2)
 B = getB(x, y, 2)
 
 alpha = linear_solve(A, B)
+
 print("Solução: ")
-print(alpha)
+print("Coeficiente linear (B): ", alpha[0])
+print("Coeficiente angulas (A): ", alpha[1])
 
 x_aprox = np.linspace(1990, 2016, 200)
 y_aprox = np.zeros_like(x_aprox)
 y_aprox += alpha[0] + alpha[1]*x_aprox
+
+
+ano = 2017
+previstos = []
+reais = [0.750, 0.755, 0.761]
+erros = []
+
+for i in range(3):
+  ano += i
+  valor_previsto = round(alpha[0] + alpha[1]*ano, 3)
+  previstos.append(valor_previsto)
+  erros.append(abs(valor_previsto - reais[i])/reais[i])
+
+d = {'year': [2017, 2018, 2019], 'IDH_real': reais, 'IDH_previsto': previstos, 'erro_relativo': erros}
+df = pd.DataFrame(data=d)
+
+print(df)
+
+#regr = linear_model.LinearRegression()
+#regr.fit(x.reshape(-1, 1), y)
+
+#print("A: ", regr.coef_)
+#print("B: ", regr.intercept_)
 
 plt.plot(x, y, 'ro')
 plt.plot(x_aprox, y_aprox)
@@ -115,3 +140,6 @@ plt.title('Pontos do exercício')
 plt.xlabel('x')
 plt.ylabel('y')
 plt.show()
+
+
+
