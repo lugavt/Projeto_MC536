@@ -24,8 +24,10 @@ for country in country_data['Country']:
     idh_data = IDH_data.loc[IDH_data['country'] == country]
     
     soap_data = sanitation_data.loc[(sanitation_data['country'] == country) & (sanitation_data['INDICATOR'] == 'WS_PPL_S-ALB')]
+    #Proportion of population using at least basic sanitation services
 
     water_data = sanitation_data.loc[(sanitation_data['country'] == country) & (sanitation_data['INDICATOR'] == 'WS_PPL_W-ALB')]
+    #Proportion of population using at least basic drinking water services
 
     validated_years = [] #vetor que salva os anos que contém valores de soap e water
 
@@ -53,7 +55,6 @@ x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2)
 
 regr = linear_model.LinearRegression()
 regr.fit(x_train, y_train)
-
 
 print('Coeficientes: ', regr.coef_)
 print('Intersecção: ', regr.intercept_)
