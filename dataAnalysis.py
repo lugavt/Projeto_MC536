@@ -111,7 +111,6 @@ x_aprox = np.linspace(1990, 2016, 200)
 y_aprox = np.zeros_like(x_aprox)
 y_aprox += alpha[0] + alpha[1]*x_aprox
 
-
 ano = 2017
 previstos = []
 reais = [0.750, 0.755, 0.761]
@@ -128,18 +127,9 @@ df = pd.DataFrame(data=d)
 
 print(df)
 
-#regr = linear_model.LinearRegression()
-#regr.fit(x.reshape(-1, 1), y)
-
-#print("A: ", regr.coef_)
-#print("B: ", regr.intercept_)
-
 plt.plot(x, y, 'ro')
 plt.plot(x_aprox, y_aprox)
 plt.title('Pontos do exercício')
 plt.xlabel('x')
 plt.ylabel('y')
 plt.show()
-
-
-
