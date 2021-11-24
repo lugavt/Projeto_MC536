@@ -217,10 +217,12 @@ SELECT * FROM Mortality
 > Com esses resultados, foi possível notar que embora Moçambique tenha tido um aumento muito significativo em seu IDH, isso não se refletiu em uma queda de índices de mortalidade. Ou seja, pelo gráfico de barras, evidenciamos valores de mortalidade mais elevados em 2016 para diversos indicadores. Portanto, para esse caso analisado, não podemos verificar uma relação inversamente proporcional entre IDH e mortalidade, como imaginávamos.
 
 #### Pergunta/Análise 2
-> * Pergunta 2
+> * Os países que apresentam os melhores valores de IDH também apresentam bons resultados de mortalidade por suicídio?
 >   
->   * Explicação sucinta da análise que será feita e conjunto de queries que
->     responde à pergunta.
+>   * Deve-se primeiro deixar claro que "bons resultados" quer dizer valores perto de zero. Dito isso, a ideia da análise é confrontar ou corroborar com a ideia de que países com maiores IDH's não possuem numeros tão expressivos quanto os demais países quando se trata de problemas sociais tão importantes.
+>    * Para realizar essa análise, deve-se fazer algumas queries. Primeiro, o grupo viu a necessidade de ordenar a lista de países a partir do valor de IDH em um determinado ano (no caso, 2016). Em seguida, foi realizada outra querie para pegar os 20 países com os maiores valores de IDH. Com esses países listados, foi realizada outra querie para agrupá-los com seus valores de taxa de suicídio. Por fim, a última querie trata de devolver a média global da taxa de suicídio para poder fazer uma comparação.
+>   * Com os dados, diferentemente do que pode-se pensar, a grande maioria dos 20 países com os melhores IDH's no ano de 2016 sofre com taxas de suicídio maiores que a média global.
+
 
 #### Pergunta/Análise 3
 > * Quais regiões apresentaram aumento nas taxas de suicídio dentre o período de 1990 a 2016?
