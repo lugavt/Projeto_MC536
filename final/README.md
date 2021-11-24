@@ -1,48 +1,3 @@
-# Modelo de Apresentação da Final
-
-# Estrutura de Arquivos e Pastas
-
-A estrutura aqui apresentada é uma simplificação daquela proposta pelo [Cookiecutter Data Science](https://drivendata.github.io/cookiecutter-data-science/). Também será aceito que o projeto adote a estrutura completa do Cookiecutter Data Science e isso será considerado um diferencial. A estrutura geral é a seguinte e será detalhada a seguir:
-
-~~~
-├── README.md  <- arquivo apresentando a proposta
-│
-├── data
-│   ├── external       <- dados de terceiros em formato usado para entrada na transformação
-│   ├── interim        <- dados intermediários, e.g., resultado de transformação
-│   ├── processed      <- dados finais usados para a publicação
-│   └── raw            <- dados originais sem modificações
-│
-├── notebooks          <- Jupyter notebooks ou equivalentes
-│
-├── slides             <- arquivo de slides em formato PDF
-│
-├── src                <- fonte em linguagem de programação ou sistema (e.g., Orange, Cytoscape)
-│   └── README.md      <- instruções básicas de instalação/execução
-│
-└── assets             <- mídias usadas no projeto
-~~~
-
-Na raiz deve haver um arquivo de nome `README.md` contendo a apresentação do projeto, como detalhado na seção seguinte.
-
-## `data`
-
-Arquivos de dados usados no projeto, quando isso ocorrer.
-
-## `notebooks`
-
-Testes ou prototipos relacionados ao projeto que tenham sido executados no Jupyter.
-
-## `src`
-
-Projeto na linguagem escolhida caso não seja usado o notebook, incluindo todos os arquivos de dados e bibliotecas necessários para a sua execução. Só coloque código Pyhton ou Java aqui se ele não rodar dentro do notebook.
-
- Acrescente na raiz um arquivo `README.md` com as instruções básicas de instalação e execução.
-
-## `assets`
-
-Qualquer mídia usada no seu projeto: vídeo, imagens, animações, slides etc. Coloque os arquivos aqui (mesmo que você mantenha uma cópia no diretório do código).
-
 # Modelo para Apresentação da Entrega Prévia do Projeto
 
 # Projeto `Compreendendo as consequências sanitárias dos índices sociais`
@@ -133,30 +88,20 @@ for country in IDH_data["country"]:
 > É possível analisar com mais detalhes o processo de tratamento dos dados no notebook [dataManagement](./notebooks/dataManagement.ipynb).
 
 ## Evolução do Projeto
-> Relatório de evolução, descrevendo as evoluções na modelagem do projeto, dificuldades enfrentadas, mudanças de rumo, melhorias e lições aprendidas. Referências aos diagramas, modelos e recortes de mudanças são bem-vindos.
-> Podem ser apresentados destaques na evolução dos modelos conceitual e lógico. O modelo inicial e intermediários (quando relevantes) e explicação de refinamentos, mudanças ou evolução do projeto que fundamentaram as decisões.
-> Relatar o processo para se alcançar os resultados é tão importante quanto os resultados.
-
  > Para começar o relatório de evolução, deve-se começar pelo início do projeto, quando o macrotema saúde foi escolhido. Na época ainda não se sabia muito claramente qual caminho seguir a partir da ideia inicial. Em seguida, a partir da nossa primeira apresentação (etapa 2), a ideia passou a ficar mais clara e o grupo optou por focar nas correlações e análises considerando aspectos sanitários, sociais e de mortalidade.
-
  > Com relação aos modelos desenvolvidos no início do semestre, inicialmente pensamos em concentrar todos os dados em uma tabela apenas, pois as relações são de 1:n. No entanto, percebemos que haveriam algumas linhas com colunas vazias e valores repetidos para algumas colunas. Logo, coletamos um dataset com informações de países e o utilizamos para relacionar com as demais tabelas.
-
  > Além disso, para desenvolver um modelo de grafos, pensamos em um modelo que facilite a visualização de proximidade entre países com indicadores semelhantes.
-
- > Como dito anteriormente, o projeto começou de maneira não tão clara. Contudo, o que foi de grande ajuda para prosseguir foi focar em achar o que realmente seria feito com os dados. Isso deve-se ser dito, pois com os dados coletados pelo grupo, diversos tipos diferentes de análise poderiam ter sido feitas. Então encontrar qual seria o foco em cima dos dados coletados.
+ > Como dito anteriormente, o projeto começou de maneira não tão clara. Contudo, o que foi de grande ajuda para prosseguir foi focar em achar o que realmente seria feito com os dados. Isso deve-se ser dito, pois com os dados coletados pelo grupo, diversos tipos diferentes de análise poderiam ter sido feitas. Então encontrar qual seria o foco em cima dos dados coletados foi crucial para o direcionamente do projeto.
 
 ## Perguntas de Pesquisa/Análise Combinadas e Respectivas Análises
 
-> Apresente os resultados da forma mais rica possível, com gráficos e tabelas. Mesmo que o seu código rode online em um notebook, copie para esta parte a figura estática. A referência a código e links para execução online pode ser feita aqui ou na seção de detalhamento do projeto (o que for mais pertinente).
-
-> Liste aqui as perguntas de pesquisa/análise e respectivas análises. Nem todas as perguntas precisam de queries que as implementam. É possível haver perguntas em que a solução é apenas descrita para demonstrar o potencial da base. Abaixo são ilustradas três perguntas, mas pode ser um número maior a critério da equipe.
->
 ### Perguntas/Análise com Resposta Implementada
 
 #### Pergunta/Análise 1
 > * Qual país adquiriu maior melhora relativa no seu IDH, ao analisar o período de 1990 a 2016? Qual o impacto no perfil de mortalidade desse país?
->   
->   * Para responder essa pergunta, devemos inicialmente selecionar os dados de 1990 e de 2016. Feito isso, nós calculamos a proporção da alteração no IDH e selecionamos o país cujo valor seja máximo. Em SQL, a análise foi feita da seguinte maneira:
+   
+
+>Para responder essa pergunta, devemos inicialmente selecionar os dados de 1990 e de 2016. Feito isso, nós calculamos a proporção da alteração no IDH e selecionamos o país cujo valor seja máximo. Em SQL, a análise foi feita da seguinte maneira:
 
 ~~~SQL
 CREATE VIEW IDH2016 AS
@@ -175,11 +120,11 @@ SELECT country, variacao FROM variacaoIDH
     WHERE variacao = (SELECT MAX(variacao) FROM variacaoIDH)
 ~~~
 
->   * Como resultado dessa sequência de queries, obtivemos o país de Moçambique com uma variação de 2,08. A fim de ilustrar essa evolução do IDH, plotamos um gráfico:
+>Como resultado dessa sequência de queries, obtivemos o país de Moçambique com uma variação de 2,08. A fim de ilustrar essa evolução do IDH, plotamos um gráfico:
 
 ![Gráfico moçambique](assets/mozambique_grafico.png)
 
->   * Agora, para entender o impacto dessa elevada alteração de IDH na mortalidade, iremos plotar um gráfico de barras contendo informações de alguns indicadores.
+>Agora, para entender o impacto dessa elevada alteração de IDH na mortalidade, iremos plotar um gráfico de barras contendo informações de alguns indicadores.
 
 ![Gráfico de barras mortalidade](assets/mozambique_barra.png)
 
@@ -190,12 +135,12 @@ SELECT * FROM Mortality
     WHERE country = 'Mozambique' AND (year = 1990 OR year = 2016)
 ~~~
 
->   * Com esses resultados, foi possível notar que embora Moçambique tenha tido um aumento muito significativo em seu IDH, isso não se refletiu em uma queda de índices de mortalidade. Ou seja, pelo gráfico de barras, evidenciamos valores de mortalidade mais elevados em 2016 para diversos indicadores. Portanto, para esse caso analisado, não podemos verificar uma relação inversamente proporcional entre IDH e mortalidade, como imaginávamos.
+>Com esses resultados, foi possível notar que embora Moçambique tenha tido um aumento muito significativo em seu IDH, isso não se refletiu em uma queda de índices de mortalidade. Ou seja, pelo gráfico de barras, evidenciamos valores de mortalidade mais elevados em 2016 para diversos indicadores. Portanto, para esse caso analisado, não podemos verificar uma relação inversamente proporcional entre IDH e mortalidade, como imaginávamos.
 
 #### Pergunta/Análise 2
 > * Os países que apresentam os melhores valores de IDH também apresentam bons resultados de mortalidade por suicídio?
 
-Deve-se primeiro deixar claro que "bons resultados" quer dizer valores perto de zero. Dito isso, a ideia da análise é confrontar ou corroborar com a ideia de que países com maiores IDH's não possuem numeros tão expressivos quanto os demais países quando se trata de problemas sociais tão importantes.
+>Deve-se primeiro deixar claro que "bons resultados" quer dizer valores perto de zero. Dito isso, a ideia da análise é confrontar ou corroborar com a ideia de que países com maiores IDH's não possuem numeros tão expressivos quanto os demais países quando se trata de problemas sociais tão importantes.
 Para realizar essa análise, deve-se fazer algumas queries. Primeiro, o grupo viu a necessidade de ordenar a lista de países a partir do valor de IDH em um determinado ano (no caso, 2016).
 
 ~~~SQL
@@ -205,7 +150,7 @@ CREATE VIEW TOPIDH AS
     ORDER BY HDI_value desc
 ~~~
 
-Em seguida, foi realizada outra querie para pegar os 20 países com os maiores valores de IDH. Com esses países listados, foi realizada outra querie para agrupá-los com seus valores de taxa de suicídio. 
+>Em seguida, foi realizada outra querie para pegar os 20 países com os maiores valores de IDH. Com esses países listados, foi realizada outra querie para agrupá-los com seus valores de taxa de suicídio. 
  
 ~~~SQL
 CREATE VIEW TOP20IDH AS 
@@ -216,14 +161,14 @@ CREATE VIEW TOPIDHSUICIDE AS
         WHERE TOP20IDH.country = M.country AND M.year = 2016
 ~~~
  
-Por fim, a última querie trata de devolver a média global da taxa de suicídio para poder fazer uma comparação.
+>Por fim, a última querie trata de devolver a média global da taxa de suicídio para poder fazer uma comparação.
 
 ~~~SQL
 SELECT AVG(Suicide) FROM Mortality
     WHERE year = 2016
 ~~~
 
-Com os dados, diferentemente do que pode-se pensar, a grande maioria dos 20 países com os melhores IDH's no ano de 2016 sofreu com taxas de suicídio maiores que a média global que foi de 1.3891157886018581.
+>Com os dados, diferentemente do que pode-se pensar, a grande maioria dos 20 países com os melhores IDH's no ano de 2016 sofreu com taxas de suicídio maiores que a média global que foi de 1.3891157886018581.
 
 ![Tabela IDH suicidio](assets/tabela_idh_suicidio.png)
 
@@ -232,7 +177,7 @@ Com os dados, diferentemente do que pode-se pensar, a grande maioria dos 20 paí
 #### Pergunta/Análise 3
 > * Quais regiões apresentaram aumento nas taxas de suicídio dentre o período de 1990 a 2016?
 >   
->   * Para responder essa análise vamos inicialmente agrupar os países por região definindo seus valores de média. Após isso, basta filtrar as regiões cujos valores de suicídio sejam maiores em 2016 que em 1990. Desse modo temos:
+>Para responder essa análise vamos inicialmente agrupar os países por região definindo seus valores de média. Após isso, basta filtrar as regiões cujos valores de suicídio sejam maiores em 2016 que em 1990. Desse modo temos:
 
 ~~~SQL
 CREATE VIEW DADOSSUICIDIO AS
@@ -245,7 +190,7 @@ SELECT D1.Region FROM DADOSSUICIDIO D1
     WHERE D1.year = 2016 AND D1.SUICIDIOMEDIO > (SELECT D2.SUICIDIOMEDIO FROM DADOSSUICIDIO D2 WHERE D2.year = 1990 AND D1.Region = D2.Region)
 ~~~
 
->   * Como resultado, obtivemos as seguintes regiões:
+>Como resultado, obtivemos as seguintes regiões:
 - C.W. OF IND. STATES
 - LATIN AMER. & CARIB
 - NEAR EAST
@@ -255,13 +200,13 @@ SELECT D1.Region FROM DADOSSUICIDIO D1
 #### Pergunta/Análise 4
 > * Previsão de dados de IDH de Brazil
 >   
->   * Para realizar essa análise, optamos por uma análise linear. Pois ao visualizar os dados de IDH do Brasil, percebemos que se aproxima de uma reta.
+>Para realizar essa análise, optamos por uma análise linear. Pois ao visualizar os dados de IDH do Brasil, percebemos que se aproxima de uma reta.
 
 ![Gráfico IDH Brazil](assets/IDH_Brasil_grafico.PNG)
 
->   * Logo, optamos pelo modelo dos mínimos quadrados para gerar a melhor reta y = Ax + B a partir dos dados já obtidos.
+>Logo, optamos pelo modelo dos mínimos quadrados para gerar a melhor reta y = Ax + B a partir dos dados já obtidos.
 
->   * Para construir esse modelo, utilizamos o método de Gauss para resolver um sistema linear gerado pelo algoritmo, a partir dos dados de x e y. Desse modo, temos o seguinte resultado:
+>Para construir esse modelo, utilizamos o método de Gauss para resolver um sistema linear gerado pelo algoritmo, a partir dos dados de x e y. Desse modo, temos o seguinte resultado:
 
 >   * Coeficiente linear (B):  -10.30504517705208
 
@@ -269,11 +214,11 @@ SELECT D1.Region FROM DADOSSUICIDIO D1
 
 ![Gráfico IDH Brazil reta](assets/IDH_Brazil_grafico_regLin.PNG)
 
->   * A partir desse modelo, com os coeficientes definidos, é possível prever valores de IDH para um determinado ano. Nesse âmbito, podemos realizar as seguintes previsões e compará-las com os valores reais de IDH desses anos:
+>A partir desse modelo, com os coeficientes definidos, é possível prever valores de IDH para um determinado ano. Nesse âmbito, podemos realizar as seguintes previsões e compará-las com os valores reais de IDH desses anos:
 
 ![Tabela previsão](assets/IDH_Brazil_tabela.PNG)
 
->   * Essa tabela indica que o modelo gerado mostrou-se relativamente fiel com o comportamento do IDH com o tempo. Ou seja, suas previsões apresentaram erros relativos menores que 2.5%, indicando uma precisão razoável.
+>Essa tabela indica que o modelo gerado mostrou-se relativamente fiel com o comportamento do IDH com o tempo. Ou seja, suas previsões apresentaram erros relativos menores que 2.5%, indicando uma precisão razoável.
 
 ### Perguntas/Análise Propostas mas Não Implementadas
 
