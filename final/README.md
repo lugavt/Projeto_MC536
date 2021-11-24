@@ -92,7 +92,7 @@ CHE: country -> Country (Country)
 
 título do arquivo/base | link | breve descrição
 ----- | ----- | -----
-`Compreendendo as consequências sanitárias dos índices sociais` | [link para dados](https://github.com/lugavt/Projeto_MC536/tree/main/final/data/processed) | `O conjunto dos dados conta com um conjunto de quatro datasets que apresentam índices de saneamento, de mortalidade e de IDH dos países numa escala temporal.`
+`Compreendendo as consequências sanitárias dos índices sociais` | https://www.github.com/lugavt/Projeto_MC536/tree/main/final/data/processed | `O conjunto dos dados conta com um conjunto de quatro datasets que apresentam índices de saneamento, de mortalidade e de IDH dos países numa escala temporal.`
 
 ## Bases de Dados
 
@@ -153,10 +153,6 @@ for country in IDH_data["country"]:
 >
 ### Perguntas/Análise com Resposta Implementada
 
-> As respostas às perguntas podem devem ser ilustradas da forma mais rica possível com tabelas resultantes, grafos ou gráficos que apresentam os resultados. Os resultados podem ser analisados e comentados. Veja um exemplo de figura ilustrando uma comunidade detectada no Cytoscape:
-
-> ![Comunidade no Cytoscape](images/cytoscape-comunidade.png)
-
 #### Pergunta/Análise 1
 > * Qual país adquiriu maior melhora relativa no seu IDH, ao analisar o período de 1990 a 2016? Qual o impacto no perfil de mortalidade desse país?
 >   
@@ -198,10 +194,39 @@ SELECT * FROM Mortality
 
 #### Pergunta/Análise 2
 > * Os países que apresentam os melhores valores de IDH também apresentam bons resultados de mortalidade por suicídio?
->   
->   * Deve-se primeiro deixar claro que "bons resultados" quer dizer valores perto de zero. Dito isso, a ideia da análise é confrontar ou corroborar com a ideia de que países com maiores IDH's não possuem numeros tão expressivos quanto os demais países quando se trata de problemas sociais tão importantes.
->    * Para realizar essa análise, deve-se fazer algumas queries. Primeiro, o grupo viu a necessidade de ordenar a lista de países a partir do valor de IDH em um determinado ano (no caso, 2016). Em seguida, foi realizada outra querie para pegar os 20 países com os maiores valores de IDH. Com esses países listados, foi realizada outra querie para agrupá-los com seus valores de taxa de suicídio. Por fim, a última querie trata de devolver a média global da taxa de suicídio para poder fazer uma comparação.
->   * Com os dados, diferentemente do que pode-se pensar, a grande maioria dos 20 países com os melhores IDH's no ano de 2016 sofre com taxas de suicídio maiores que a média global.
+
+Deve-se primeiro deixar claro que "bons resultados" quer dizer valores perto de zero. Dito isso, a ideia da análise é confrontar ou corroborar com a ideia de que países com maiores IDH's não possuem numeros tão expressivos quanto os demais países quando se trata de problemas sociais tão importantes.
+Para realizar essa análise, deve-se fazer algumas queries. Primeiro, o grupo viu a necessidade de ordenar a lista de países a partir do valor de IDH em um determinado ano (no caso, 2016).
+
+~~~SQL
+CREATE VIEW TOPIDH AS
+    SELECT country, HDI_value FROM IDH
+    WHERE year = 2016
+    ORDER BY HDI_value desc
+~~~
+
+Em seguida, foi realizada outra querie para pegar os 20 países com os maiores valores de IDH. Com esses países listados, foi realizada outra querie para agrupá-los com seus valores de taxa de suicídio. 
+ 
+~~~SQL
+CREATE VIEW TOP20IDH AS 
+    SELECT top 20 * FROM TOPIDH
+
+CREATE VIEW TOPIDHSUICIDE AS
+    SELECT TOP20IDH.country, TOP20IDH.HDI_VALUE, M.Suicide FROM TOP20IDH, Mortality M
+        WHERE TOP20IDH.country = M.country AND M.year = 2016
+~~~
+ 
+Por fim, a última querie trata de devolver a média global da taxa de suicídio para poder fazer uma comparação.
+
+~~~SQL
+SELECT AVG(Suicide) FROM Mortality
+    WHERE year = 2016
+~~~
+
+Com os dados, diferentemente do que pode-se pensar, a grande maioria dos 20 países com os melhores IDH's no ano de 2016 sofre com taxas de suicídio maiores que a média global.
+
+![Tabela IDH suicidio](assets/tabela_idh_suicidio.png)
+
 
 
 #### Pergunta/Análise 3
