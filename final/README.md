@@ -278,6 +278,8 @@ SELECT Mortality.country, Mortality.year, Mortality.Tuberculosis, S.OBS_VALUE FR
 
 > Pelos valores acima, foi possível evidenciar diferenças relevantes nos índices de cada cluster. Indicando sucesso no agrupamento por similaridade entre os países.
 
+> Vale lembrar que a cada momento que executamos o algoritmo, é gerado um novo conjunto de clusters diferente.
+
 
 
 ### Perguntas/Análise Propostas mas Não Implementadas
