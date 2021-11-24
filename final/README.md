@@ -160,7 +160,7 @@ for country in IDH_data["country"]:
 #### Pergunta/Análise 1
 > * Qual país adquiriu maior melhora relativa no seu IDH, ao analisar o período de 1990 a 2016? Qual o impacto no perfil de mortalidade desse país?
 >   
-> Para responder essa pergunta, devemos inicialmente selecionar os dados de 1990 e de 2016. Feito isso, nós calculamos a proporção da alteração no IDH e selecionamos o país cujo valor seja máximo. Em SQL, a análise foi feita da seguinte maneira:
+>   * Para responder essa pergunta, devemos inicialmente selecionar os dados de 1990 e de 2016. Feito isso, nós calculamos a proporção da alteração no IDH e selecionamos o país cujo valor seja máximo. Em SQL, a análise foi feita da seguinte maneira:
 
 ~~~SQL
 CREATE VIEW IDH2016 AS
@@ -179,22 +179,22 @@ SELECT country, variacao FROM variacaoIDH
     WHERE variacao = (SELECT MAX(variacao) FROM variacaoIDH)
 ~~~
 
-> Como resultado dessa sequência de queries, obtivemos o país de Moçambique com uma variação de 2,08. A fim de ilustrar essa evolução do IDH, plotamos um gráfico:
+>   * Como resultado dessa sequência de queries, obtivemos o país de Moçambique com uma variação de 2,08. A fim de ilustrar essa evolução do IDH, plotamos um gráfico:
 
 ![Gráfico moçambique](assets/mozambique_grafico.png)
 
-> Agora, para entender o impacto dessa elevada alteração de IDH na mortalidade, iremos plotar um gráfico de barras contendo informações de alguns indicadores.
+>   * Agora, para entender o impacto dessa elevada alteração de IDH na mortalidade, iremos plotar um gráfico de barras contendo informações de alguns indicadores.
 
 ![Gráfico de barras mortalidade](assets/mozambique_barra.png)
 
-> A seguinte query em SQL também gera a mesma informação, porém com todos os índices de mortalidade e em formato tabular:
+>   * A seguinte query em SQL também gera a mesma informação, porém com todos os índices de mortalidade e em formato tabular:
 
 ~~~SQL
 SELECT * FROM Mortality
     WHERE country = 'Mozambique' AND (year = 1990 OR year = 2016)
 ~~~
 
-> Com esses resultados, foi possível notar que embora Moçambique tenha tido um aumento muito significativo em seu IDH, isso não se refletiu em uma queda de índices de mortalidade. Ou seja, pelo gráfico de barras, evidenciamos valores de mortalidade mais elevados em 2016 para diversos indicadores. Portanto, para esse caso analisado, não podemos verificar uma relação inversamente proporcional entre IDH e mortalidade, como imaginávamos.
+>   * Com esses resultados, foi possível notar que embora Moçambique tenha tido um aumento muito significativo em seu IDH, isso não se refletiu em uma queda de índices de mortalidade. Ou seja, pelo gráfico de barras, evidenciamos valores de mortalidade mais elevados em 2016 para diversos indicadores. Portanto, para esse caso analisado, não podemos verificar uma relação inversamente proporcional entre IDH e mortalidade, como imaginávamos.
 
 #### Pergunta/Análise 2
 > * Os países que apresentam os melhores valores de IDH também apresentam bons resultados de mortalidade por suicídio?
@@ -207,7 +207,7 @@ SELECT * FROM Mortality
 #### Pergunta/Análise 3
 > * Quais regiões apresentaram aumento nas taxas de suicídio dentre o período de 1990 a 2016?
 >   
-> Para responder essa análise vamos inicialmente agrupar os países por região definindo seus valores de média. Após isso, basta filtrar as regiões cujos valores de suicídio sejam maiores em 2016 que em 1990. Desse modo temos:
+>   * Para responder essa análise vamos inicialmente agrupar os países por região definindo seus valores de média. Após isso, basta filtrar as regiões cujos valores de suicídio sejam maiores em 2016 que em 1990. Desse modo temos:
 
 ~~~SQL
 CREATE VIEW DADOSSUICIDIO AS
@@ -220,7 +220,7 @@ SELECT D1.Region FROM DADOSSUICIDIO D1
     WHERE D1.year = 2016 AND D1.SUICIDIOMEDIO > (SELECT D2.SUICIDIOMEDIO FROM DADOSSUICIDIO D2 WHERE D2.year = 1990 AND D1.Region = D2.Region)
 ~~~
 
-> Como resultado, obtivemos as seguintes regiões:
+>   * Como resultado, obtivemos as seguintes regiões:
 - C.W. OF IND. STATES
 - LATIN AMER. & CARIB
 - NEAR EAST
@@ -230,25 +230,25 @@ SELECT D1.Region FROM DADOSSUICIDIO D1
 #### Pergunta/Análise 4
 > * Previsão de dados de IDH de Brazil
 >   
-> Para realizar essa análise, optamos por uma análise linear. Pois ao visualizar os dados de IDH do Brasil, percebemos que se aproxima de uma reta.
+>   * Para realizar essa análise, optamos por uma análise linear. Pois ao visualizar os dados de IDH do Brasil, percebemos que se aproxima de uma reta.
 
 ![Gráfico IDH Brazil](assets/IDH_Brasil_grafico.PNG)
 
-> Logo, optamos pelo modelo dos mínimos quadrados para gerar a melhor reta y = Ax + B a partir dos dados já obtidos.
+>   * Logo, optamos pelo modelo dos mínimos quadrados para gerar a melhor reta y = Ax + B a partir dos dados já obtidos.
 
-> Para construir esse modelo, utilizamos o método de Gauss para resolver um sistema linear gerado pelo algoritmo, a partir dos dados de x e y. Desse modo, temos o seguinte resultado:
+>   * Para construir esse modelo, utilizamos o método de Gauss para resolver um sistema linear gerado pelo algoritmo, a partir dos dados de x e y. Desse modo, temos o seguinte resultado:
 
-> Coeficiente linear (B):  -10.30504517705208
+>   * Coeficiente linear (B):  -10.30504517705208
 
-> Coeficiente angulas (A):  0.005489621489624936
+>   * Coeficiente angulas (A):  0.005489621489624936
 
 ![Gráfico IDH Brazil reta](assets/IDH_Brazil_grafico_regLin.PNG)
 
-> A partir desse modelo, com os coeficientes definidos, é possível prever valores de IDH para um determinado ano. Nesse âmbito, podemos realizar as seguintes previsões e compará-las com os valores reais de IDH desses anos:
+>   * A partir desse modelo, com os coeficientes definidos, é possível prever valores de IDH para um determinado ano. Nesse âmbito, podemos realizar as seguintes previsões e compará-las com os valores reais de IDH desses anos:
 
 ![Tabela previsão](assets/IDH_Brazil_tabela.PNG)
 
-> Essa tabela indica que o modelo gerado mostrou-se relativamente fiel com o comportamento do IDH com o tempo. Ou seja, suas previsões apresentaram erros relativos menores que 2.5%, indicando uma precisão razoável.
+>   * Essa tabela indica que o modelo gerado mostrou-se relativamente fiel com o comportamento do IDH com o tempo. Ou seja, suas previsões apresentaram erros relativos menores que 2.5%, indicando uma precisão razoável.
 
 ### Perguntas/Análise Propostas mas Não Implementadas
 
