@@ -250,6 +250,7 @@ SELECT Mortality.country, Mortality.year, Mortality.Tuberculosis, S.OBS_VALUE FR
 ~~~
 
 > Com essa querie, chega-se a uma tabela:
+
 ![Tabela de mortalidade de tuberculose e saneamento no Brasil](assets/tuberculose_saneamento.png)
 
 > Vale frisar que "OBS_VALUE" é a porcentagem da população com acesso a saneamento básico.
