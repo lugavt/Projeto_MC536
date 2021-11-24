@@ -221,17 +221,44 @@ SELECT D1.Region FROM DADOSSUICIDIO D1
 >Essa tabela indica que o modelo gerado mostrou-se relativamente fiel com o comportamento do IDH com o tempo. Ou seja, suas previsões apresentaram erros relativos menores que 2.5%, indicando uma precisão razoável.
 
 #### Pergunta/Análise 5
-> * É possível determinar uma relação linear entre IDH e dados de saneamento básico/higiene com os índices de mortalidade por tuberculose? Se sim, qual desses indicadores apresenta maior peso?
->   * Para responder essa pergunta, utilizaremos uma regressão linear múltipla tal que:
+>   * É possível determinar uma relação linear entre IDH e dados de saneamento básico/higiene com os índices de mortalidade por tuberculose? Se sim, qual desses indicadores apresenta maior peso?
+
+>Para responder essa pergunta, utilizaremos uma regressão linear múltipla tal que:
+
 >   * X = [x1, x2, x3] = [IDH, proporção de população com ao menos o básico de saneamento, proporção da população com ao menos o básico de água tratada]
 >   * Y = Mortalidade por tuberculose
->   * Desse modo, através do modelo, é possível determinar os melhores coeficientes para a seguinte equação: Y = A + Bx1 + Cx2 + Dx3.
->   * Portanto, utilizamos os dados de diversos países que contenham dados desses indicadores X e Y e executamnos o método. Com isso, obtivemos os seguintes valores para os coeficientes:
+
+>Desse modo, através do modelo, é possível determinar os melhores coeficientes para a seguinte equação: Y = A + Bx1 + Cx2 + Dx3.
+
+>Portanto, utilizamos os dados de diversos países que contenham dados desses indicadores X e Y e executamnos o método. Com isso, obtivemos os seguintes valores para os coeficientes:
 
 ![Resultado regressão linear](assets/mult_regLin.PNG)
 
-> * A partir dos resultados é possível notar que o dado com maior peso (em valor absoluto) é o coeficiente que acompanha o parâmetro de IDH. Isto é, esse indicador possui maior relevância no momento de prever a mortalidade por tuberculose. 
-> * No entanto, é possível notar que obtivemos uma variância (score) mediana, indicando pouca precisão. Ou seja, os parâmetros utilizados não descrevem uma relação linear clara com os dados de tuberculose, uma vez que o método prevê uma linearidade e gerou um score não tão elevado.
+>A partir dos resultados é possível notar que o dado com maior peso (em valor absoluto) é o coeficiente que acompanha o parâmetro de IDH. Isto é, esse indicador possui maior relevância no momento de prever a mortalidade por tuberculose. 
+
+>No entanto, é possível notar que obtivemos uma variância (score) mediana, indicando pouca precisão. Ou seja, os parâmetros utilizados não descrevem uma relação linear clara com os dados de tuberculose, uma vez que o método prevê uma linearidade e gerou um score não tão elevado.
+
+#### Pergunta/Análise 6
+
+>   * No recorte Brasil, é possível observar uma variação na mortalidade por tuberculose considerando a variação na proporção de pessoas com acesso a saneamento básico?
+
+> A importância dessa questão é confirmar que uma forma de combater uma doença tão relevante como a tuberculose é a partir de investimento em saneamento e saúde públicos. Para encontrar um resultado, deve-se primeiro selecionar os dados de saneamento e de mortalidade por tuberculose no Brasil ao longo dos anos.
+
+~~~SQL
+SELECT Mortality.country, Mortality.year, Mortality.Tuberculosis, S.OBS_VALUE FROM Mortality, Sanitation S
+    WHERE Mortality.COUNTRY = 'Brazil' AND Mortality.year = S.year AND S.country = 'Brazil' AND S.INDICATOR = 'WS_PPL_S-ALB'
+~~~
+
+> Com essa querie, chega-se a uma tabela:
+![Tabela de mortalidade de tuberculose e saneamento no Brasil](assets/tuberculose_saneamento.png)
+
+> Vale frisar que "OBS_VALUE" é a porcentagem da população com acesso a saneamento básico.
+
+> Em adição, para auxiliar no entendimento da relação, plotou-se um gráfico:
+
+![Gráfico de mortalidade de tuberculose e saneamento no Brasil](assets/grafico_tuberculose_saneamento.png)
+
+>Dessa forma, analisando graficamente os dados apresentados, é possível perceber que a medida que há um aumento da porcentagem de pessoas com acesso a saneamento básico, há uma diminuição das mortes relativas a tuberculose. Comprovando, assim, a teoria inicial.
 
 ### Perguntas/Análise Propostas mas Não Implementadas
 
