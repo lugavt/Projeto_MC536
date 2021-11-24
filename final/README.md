@@ -261,6 +261,21 @@ SELECT Mortality.country, Mortality.year, Mortality.Tuberculosis, S.OBS_VALUE FR
 
 >Dessa forma, analisando graficamente os dados apresentados, é possível perceber que a medida que há um aumento da porcentagem de pessoas com acesso a saneamento básico, há uma diminuição das mortes relativas a tuberculose. Comprovando, assim, a teoria inicial.
 
+#### Pergunta/Análise 7
+ 
+>   * A partir dos dados de saneamento básico, é possível agrupar os países em clusters baseado nas semelhanças de suas estatísticas, em determinado ano? 
+
+> Esse tipo de análise serve para ilustrar países que se encontram em situações similares no desenvolvimento ao acesso de sanemento básico. A partir disso, pode-se comparar futuramente a evolução de cada país, e comparar de maneira mais eficiente o impacto de eventuais ações governamentais.
+
+> Portanto, para identificar as variações nos índices de saneamento básico de cada cluster, vamos mostrar suas respectivas medianas referentes a cada indicador. 
+> Desse modo, obtivemos os seguintes resultados para cada cluster válida:
+
+![Clustering](assets/clustering_results.PNG)
+
+> Pelos valores acima, foi possível evidenciar diferenças relevantes nos índices de cada cluster. Indicando sucesso no agrupamento por similaridade entre os países.
+
+
+
 ### Perguntas/Análise Propostas mas Não Implementadas
 
 #### Pergunta/Análise 1
