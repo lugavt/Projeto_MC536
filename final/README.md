@@ -279,18 +279,16 @@ SELECT Mortality.country, Mortality.year, Mortality.Tuberculosis, S.OBS_VALUE FR
 ### Perguntas/Análise Propostas mas Não Implementadas
 
 #### Pergunta/Análise 1
-> * Pergunta 1
+> * Rede neural para relacionar tuberculose com dados de IDH e saneamento básicio
 >   
->   * Explicação em linhas gerais de como a base pode ser usada para responder esta pergunta e a sua relevância.
+>   * Como nossa tentativa de relacionar esses dados de maneira linear não apresentou uma precisão adequada, seria interessante experimentar um modelo de rede neural para buscar essa relação. Com ele, seria possível representar relações não lineares entre essas informações e, portanto, conseguir uma melhor acurácia para os resultados.
 
 #### Pergunta/Análise 2
-> * Pergunta 2
+> * Evolução das mortes por HIV
 >   
->   * Explicação em linhas gerais de como a base pode ser usada para responder esta pergunta e a sua relevância.
+>   * Como nossa base permite uma análise temporal, é possível apresentar o comportamento da mortalidade ao longo do tempo. Com essas informações, podemos entender como se deu o auge de sua contaminação e identificar suas oscilações durante o tempo. Essa análise é importante também para identificar se nos tempos mais atuais os índices estão aumentando, e se seriam necessárias mais campanhas de conscientização.
 
 #### Pergunta/Análise 3
-> * Pergunta 3
+> * Países em que haja legalização das drogas, apresentam maiores valores de mortalidade por transtornos causados por ela?
 >   
->   * Explicação em linhas gerais de como a base pode ser usada para responder esta pergunta e a sua relevância.
-
-> Coloque um link para o arquivo do notebook que executa o conjunto de queries. Ele estará dentro da pasta `notebook`. Se por alguma razão o código não for executável no Jupyter, coloque na pasta `src`. Se as queries forem executadas atraves de uma interface de um SGBD não executável no Jupyter, como o Cypher, apresente na forma de markdown.
+>   * Através dessa análise, é possível idetificar uma relação entre a característica jurídica do uso da droga com as causas de mortes por ela. Nesse caso seria necessário obter dados sobre quais países possuem esse perfil e cruzar com os dados de mortalidade presentes. Essa observação seria interessante, pois poderia fundamentar o debate sobre esse assunto. 
