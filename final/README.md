@@ -182,7 +182,7 @@ for country in IDH_data["country"]:
 >   
 > Para responder essa pergunta, devemos inicialmente selecionar os dados de 1990 e de 2016. Feito isso, nós calculamos a proporção da alteração no IDH e selecionamos o país cujo valor seja máximo. Em SQL, a análise foi feita da seguinte maneira:
 
-![SQL code](assets/SQL_mozambique.png)
+<img src="assets/SQL_mozambique.png" height="220" width="630">
 
 > A fim de ilustrar essa evolução do IDH, plotamos um gráfico:
 
@@ -194,7 +194,8 @@ for country in IDH_data["country"]:
 
 > A seguinte query em SQL também gera a mesma informação em formato tabular:
 
-![SQL mortalidade moçambique](assets/mozambique_mortalidade_SQL.png)
+<img src="assets/mozambique_mortalidade_SQL.png" height="100" width="650">
+
 
 > Com esses resultados, foi possível notar que embora Moçambique tenha tido um aumento muito significativo em seu IDH, isso não se refletiu em uma queda de índices de mortalidade. Ou seja, pelo gráfico de barras, evidenciamos valores de mortalidade mais elevados em 2016 para diversos indicadores. Portanto, para esse caso analisado, não podemos verificar uma relação inversamente proporcional entre IDH e mortalidade, como imaginávamos.
 
