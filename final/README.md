@@ -182,9 +182,24 @@ for country in IDH_data["country"]:
 >   
 > Para responder essa pergunta, devemos inicialmente selecionar os dados de 1990 e de 2016. Feito isso, nós calculamos a proporção da alteração no IDH e selecionamos o país cujo valor seja máximo. Em SQL, a análise foi feita da seguinte maneira:
 
-<img src="assets/SQL_mozambique.png" height="220" width="630">
+~~~SQL
+CREATE VIEW IDH2016 AS
+    SELECT country, year, HDI_VALUE FROM IDH
+        WHERE year = 2016
 
-> A fim de ilustrar essa evolução do IDH, plotamos um gráfico:
+CREATE VIEW IDH1990 AS
+    SELECT country, year, HDI_VALUE FROM IDH
+        WHERE year = 1990
+
+CREATE VIEW variacaoIDH AS
+    SELECT IDH2016.country, IDH2016.HDI_VALUE/IDH1990.HDI_VALUE as variacao FROM IDH2016, IDH1990
+            WHERE IDH2016.country = IDH1990.country
+
+SELECT country, variacao FROM variacaoIDH
+    WHERE variacao = (SELECT MAX(variacao) FROM variacaoIDH)
+~~~
+
+> Como resultado dessa sequência de queries, obtivemos o país de Moçambique com uma variação de 2,08. A fim de ilustrar essa evolução do IDH, plotamos um gráfico:
 
 ![Gráfico moçambique](assets/mozambique_grafico.png)
 
@@ -192,10 +207,12 @@ for country in IDH_data["country"]:
 
 ![Gráfico de barras mortalidade](assets/mozambique_barra.png)
 
-> A seguinte query em SQL também gera a mesma informação em formato tabular:
+> A seguinte query em SQL também gera a mesma informação, porém com todos os índices de mortalidade e em formato tabular:
 
-<img src="assets/mozambique_mortalidade_SQL.png" height="100" width="650">
-
+~~~SQL
+SELECT * FROM Mortality
+    WHERE country = 'Mozambique' AND (year = 1990 OR year = 2016)
+~~~
 
 > Com esses resultados, foi possível notar que embora Moçambique tenha tido um aumento muito significativo em seu IDH, isso não se refletiu em uma queda de índices de mortalidade. Ou seja, pelo gráfico de barras, evidenciamos valores de mortalidade mais elevados em 2016 para diversos indicadores. Portanto, para esse caso analisado, não podemos verificar uma relação inversamente proporcional entre IDH e mortalidade, como imaginávamos.
 
@@ -206,10 +223,27 @@ for country in IDH_data["country"]:
 >     responde à pergunta.
 
 #### Pergunta/Análise 3
-> * Pergunta 3
+> * Quais regiões apresentaram aumento nas taxas de suicídio dentre o período de 1990 a 2016?
 >   
->   * Explicação sucinta da análise que será feita e conjunto de queries que
->     responde à pergunta.
+> Para responder essa análise vamos inicialmente agrupar os países por região definindo seus valores de média. Após isso, basta filtrar as regiões cujos valores de suicídio sejam maiores em 2016 que em 1990. Desse modo temos:
+
+~~~SQL
+CREATE VIEW DADOSSUICIDIO AS
+    SELECT C.Region, M.year, AVG(M.Suicide) SuicidioMedio FROM Mortality M, Countries C
+            WHERE M.country = C.country
+            GROUP BY (C.Region, M.year)
+            ORDER BY C.Region
+
+SELECT D1.Region FROM DADOSSUICIDIO D1
+    WHERE D1.year = 2016 AND D1.SUICIDIOMEDIO > (SELECT D2.SUICIDIOMEDIO FROM DADOSSUICIDIO D2 WHERE D2.year = 1990 AND D1.Region = D2.Region)
+~~~
+
+> Como resultado, obtivemos as seguintes regiões:
+- C.W. OF IND. STATES
+- LATIN AMER. & CARIB
+- NEAR EAST
+- NORTHERN AFRICA
+- SUB-SAHARAN AFRICA
 
 ### Perguntas/Análise Propostas mas Não Implementadas
 
