@@ -198,7 +198,7 @@ SELECT D1.Region FROM DADOSSUICIDIO D1
 - SUB-SAHARAN AFRICA
 
 #### Pergunta/Análise 4
-> * Previsão de dados de IDH de Brazil
+> * Previsão de dados de IDH de Brasil
 >   
 >Para realizar essa análise, optamos por uma análise linear. Pois ao visualizar os dados de IDH do Brasil, percebemos que se aproxima de uma reta.
 
