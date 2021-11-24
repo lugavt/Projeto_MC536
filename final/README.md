@@ -1,5 +1,3 @@
-# Modelo para Apresentação da Entrega Prévia do Projeto
-
 # Projeto `Compreendendo as consequências sanitárias dos índices sociais`
 
 # Equipe `Engenheiros do Açaí` - `EDA`
