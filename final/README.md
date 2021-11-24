@@ -10,7 +10,7 @@
 
 
 ## Slides da Apresentação
-> ![slides](slides/slides.pdf)
+> [slides](slides/slides.pdf)
 
 ## Modelo Conceitual Preliminar
 
@@ -95,6 +95,8 @@ for country in IDH_data["country"]:
 
 ### Perguntas/Análise com Resposta Implementada
 
+> Consultas SQL realizadas no arquivo [notebook](./notebooks/handleQueries.ipynb)
+
 #### Pergunta/Análise 1
 > * Qual país adquiriu maior melhora relativa no seu IDH, ao analisar o período de 1990 a 2016? Qual o impacto no perfil de mortalidade desse país?
    
@@ -119,6 +121,8 @@ SELECT country, variacao FROM variacaoIDH
 ~~~
 
 >Como resultado dessa sequência de queries, obtivemos o país de Moçambique com uma variação de 2,08. A fim de ilustrar essa evolução do IDH, plotamos um gráfico:
+
+>Gráficos tratados em: [notebook](./notebooks/queriesPlot.ipynb)
 
 ![Gráfico moçambique](assets/mozambique_grafico.png)
 
@@ -198,7 +202,7 @@ SELECT D1.Region FROM DADOSSUICIDIO D1
 #### Pergunta/Análise 4
 > * Previsão de dados de IDH de Brasil
 >   
->Para realizar essa análise, optamos por uma análise linear. Pois ao visualizar os dados de IDH do Brasil, percebemos que se aproxima de uma reta.
+>Para realizar essa análise, optamos por uma análise linear. Pois ao visualizar os dados de IDH do Brasil, percebemos que se aproxima de uma reta. Para resolver o método, utilizou-se o seguinte [notebook](./notebooks/dataAnalysis.ipynb).
 
 ![Gráfico IDH Brazil](assets/IDH_Brasil_grafico.PNG)
 
@@ -226,7 +230,9 @@ SELECT D1.Region FROM DADOSSUICIDIO D1
 >   * X = [x1, x2, x3] = [IDH, proporção de população com ao menos o básico de saneamento, proporção da população com ao menos o básico de água tratada]
 >   * Y = Mortalidade por tuberculose
 
->Desse modo, através do modelo, é possível determinar os melhores coeficientes para a seguinte equação: Y = A + Bx1 + Cx2 + Dx3.
+>Para resolver a análise foi utilizado o seguinte [notebook](./notebooks/linRegression.ipynb)
+
+>Desse modo, através do modelo, é possível determinar os melhores co./notebooks/linRegression.ipynbeficientes para a seguinte equação: Y = A + Bx1 + Cx2 + Dx3.
 
 >Portanto, utilizamos os dados de diversos países que contenham dados desses indicadores X e Y e executamnos o método. Com isso, obtivemos os seguintes valores para os coeficientes:
 
@@ -253,7 +259,7 @@ SELECT Mortality.country, Mortality.year, Mortality.Tuberculosis, S.OBS_VALUE FR
 
 > Vale frisar que "OBS_VALUE" é a porcentagem da população com acesso a saneamento básico.
 
-> Em adição, para auxiliar no entendimento da relação, plotou-se um gráfico:
+> Em adição, para auxiliar no entendimento da relação, plotou-se um gráfico como observado no [notebook](./notebooks/queriesPlot.ipynb):
 
 ![Gráfico de mortalidade de tuberculose e saneamento no Brasil](assets/grafico_tuberculose_saneamento.png)
 
@@ -266,7 +272,7 @@ SELECT Mortality.country, Mortality.year, Mortality.Tuberculosis, S.OBS_VALUE FR
 > Esse tipo de análise serve para ilustrar países que se encontram em situações similares no desenvolvimento ao acesso de sanemento básico. A partir disso, pode-se comparar futuramente a evolução de cada país, e comparar de maneira mais eficiente o impacto de eventuais ações governamentais.
 
 > Portanto, para identificar as variações nos índices de saneamento básico de cada cluster, vamos mostrar suas respectivas medianas referentes a cada indicador. 
-> Desse modo, obtivemos os seguintes resultados para cada cluster válida:
+> Desse modo, obtivemos os seguintes resultados para cada cluster válida a partir do seguinte [notebook](./notebooks/clustering.ipynb):
 
 ![Clustering](assets/clustering_results.PNG)
 
