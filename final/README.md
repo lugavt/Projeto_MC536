@@ -245,6 +245,29 @@ SELECT D1.Region FROM DADOSSUICIDIO D1
 - NORTHERN AFRICA
 - SUB-SAHARAN AFRICA
 
+#### Pergunta/Análise 4
+> * Previsão de dados de IDH de Brazil
+>   
+> Para realizar essa análise, optamos por uma análise linear. Pois ao visualizar os dados de IDH do Brasil, percebemos que se aproxima de uma reta.
+
+![Gráfico IDH Brazil](assets/IDH_Brasil_grafico.PNG)
+
+> Logo, optamos pelo modelo dos mínimos quadrados para gerar a melhor reta y = Ax + B a partir dos dados já obtidos.
+
+> Para construir esse modelo, utilizamos o método de Gauss para resolver um sistema linear gerado pelo algoritmo, a partir dos dados de x e y. Desse modo, temos o seguinte resultado:
+
+> Coeficiente linear (B):  -10.30504517705208
+
+> Coeficiente angulas (A):  0.005489621489624936
+
+![Gráfico IDH Brazil reta](assets/IDH_Brazil_grafico_regLin.PNG)
+
+> A partir desse modelo, com os coeficientes definidos, é possível prever valores de IDH para um determinado ano. Nesse âmbito, podemos realizar as seguintes previsões e compará-las com os valores reais de IDH desses anos:
+
+![Tabela previsão](assets/IDH_Brazil_tabela.PNG)
+
+> Essa tabela indica que o modelo gerado mostrou-se relativamente fiel com o comportamento do IDH com o tempo. Ou seja, suas previsões apresentaram erros relativos menores que 2.5%, indicando uma precisão razoável.
+
 ### Perguntas/Análise Propostas mas Não Implementadas
 
 #### Pergunta/Análise 1
