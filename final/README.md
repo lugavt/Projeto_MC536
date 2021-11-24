@@ -136,6 +136,8 @@ for country in IDH_data["country"]:
         IDH_data = IDH_data[filtered_data]
 ~~~
 
+> É possível analisar com mais detalhes o processo de tratamento dos dados no notebook [dataManagement](./notebooks/dataManagement.ipynb).
+
 > Se usar Orange para alguma análise, você pode apresentar uma captura do workflow, como o exemplo a seguir e descrevê-lo:
 ![Workflow no Orange](images/orange-zombie-meals-prediction.png)
 
@@ -156,7 +158,11 @@ for country in IDH_data["country"]:
 > Relatar o processo para se alcançar os resultados é tão importante quanto os resultados.
 
  > Para começar o relatório de evolução, deve-se começar pelo início do projeto, quando o macrotema saúde foi escolhido. Na época ainda não se sabia muito claramente qual caminho seguir a partir da ideia inicial. Em seguida, a partir da nossa primeira apresentação (etapa 2), a ideia passou a ficar mais clara e o grupo optou por focar nas correlações e análises considerando aspectos sanitários, sociais e de mortalidade.
- > Com relação aos modelos desenvolvidos no início do semestre, tirando alguns aprimoramentos, os modelos lógico e conceitual se mantiveram similares. Ao longo do semestre, foi incluso também o modelo de grafos.
+
+ > Com relação aos modelos desenvolvidos no início do semestre, inicialmente pensamos em concentrar todos os dados em uma tabela apenas, pois as relações são de 1:n. No entanto, percebemos que haveriam algumas linhas com colunas vazias e valores repetidos para algumas colunas. Logo, coletamos um dataset com informações de países e o utilizamos para relacionar com as demais tabelas.
+
+ > Além disso, para desenvolver um modelo de grafos, pensamos em um modelo que facilite a visualização de proximidade entre países com indicadores semelhantes.
+
  > Como dito anteriormente, o projeto começou de maneira não tão clara. Contudo, o que foi de grande ajuda para prosseguir foi focar em achar o que realmente seria feito com os dados. Isso deve-se ser dito, pois com os dados coletados pelo grupo, diversos tipos diferentes de análise poderiam ter sido feitas. Então encontrar qual seria o foco em cima dos dados coletados.
 
 ## Perguntas de Pesquisa/Análise Combinadas e Respectivas Análises
