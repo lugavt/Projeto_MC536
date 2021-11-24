@@ -178,10 +178,25 @@ for country in IDH_data["country"]:
 > ![Comunidade no Cytoscape](images/cytoscape-comunidade.png)
 
 #### Pergunta/Análise 1
-> * Pergunta 1
+> * Qual país adquiriu maior melhora relativa no seu IDH, ao analisar o período de 1990 a 2016? Qual o impacto no perfil de mortalidade desse país?
 >   
->   * Explicação sucinta da análise que será feita e conjunto de queries que
->     responde à pergunta.
+> Para responder essa pergunta, devemos inicialmente selecionar os dados de 1990 e de 2016. Feito isso, nós calculamos a proporção da alteração no IDH e selecionamos o país cujo valor seja máximo. Em SQL, a análise foi feita da seguinte maneira:
+
+![SQL code](assets/SQL_mozambique.png)
+
+> A fim de ilustrar essa evolução do IDH, plotamos um gráfico:
+
+![Gráfico moçambique](assets/mozambique_grafico.png)
+
+> Agora, para entender o impacto dessa elevada alteração de IDH na mortalidade, iremos plotar um gráfico de barras contendo informações de alguns indicadores.
+
+![Gráfico de barras mortalidade](assets/mozambique_barra.png)
+
+> A seguinte query em SQL também gera a mesma informação em formato tabular:
+
+![SQL mortalidade moçambique](assets/mozambique_mortalidade_SQL.png)
+
+> Com esses resultados, foi possível notar que embora Moçambique tenha tido um aumento muito significativo em seu IDH, isso não se refletiu em uma queda de índices de mortalidade. Ou seja, pelo gráfico de barras, evidenciamos valores de mortalidade mais elevados em 2016 para diversos indicadores. Portanto, para esse caso analisado, não podemos verificar uma relação inversamente proporcional entre IDH e mortalidade, como imaginávamos.
 
 #### Pergunta/Análise 2
 > * Pergunta 2
