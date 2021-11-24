@@ -210,7 +210,7 @@ SELECT D1.Region FROM DADOSSUICIDIO D1
 
 >   * Coeficiente linear (B):  -10.30504517705208
 
->   * Coeficiente angulas (A):  0.005489621489624936
+>   * Coeficiente angular (A):  0.005489621489624936
 
 ![Gráfico IDH Brazil reta](assets/IDH_Brazil_grafico_regLin.PNG)
 
