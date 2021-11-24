@@ -223,7 +223,7 @@ SELECT AVG(Suicide) FROM Mortality
     WHERE year = 2016
 ~~~
 
-Com os dados, diferentemente do que pode-se pensar, a grande maioria dos 20 países com os melhores IDH's no ano de 2016 sofre com taxas de suicídio maiores que a média global.
+Com os dados, diferentemente do que pode-se pensar, a grande maioria dos 20 países com os melhores IDH's no ano de 2016 sofreu com taxas de suicídio maiores que a média global que foi de 1.3891157886018581.
 
 ![Tabela IDH suicidio](assets/tabela_idh_suicidio.png)
 
